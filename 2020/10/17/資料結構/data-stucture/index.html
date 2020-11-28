@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-ankh-solid.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-ankh-solid.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"daojun0690.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="資料結構透過自訂資料型別，電腦專家從陣列開始，創造了四種常用的資料結構，再從這四種結構變化出其他模式。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="資料結構">
+<meta property="og:url" content="https://daojun0690.github.io/2020/10/17/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B/data-stucture/index.html">
+<meta property="og:site_name" content="大羅化の隨筆壇">
+<meta property="og:description" content="資料結構透過自訂資料型別，電腦專家從陣列開始，創造了四種常用的資料結構，再從這四種結構變化出其他模式。">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://images.vocus.cc/8821dc7a-95ee-4b7a-bd13-0f83b9e75a3b.jpg">
+<meta property="article:published_time" content="2020-10-17T07:07:59.000Z">
+<meta property="article:modified_time" content="2020-10-24T07:34:44.309Z">
+<meta property="article:author" content="Jeff Wang">
+<meta property="article:tag" content="程式語言">
+<meta property="article:tag" content="資料結構">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://images.vocus.cc/8821dc7a-95ee-4b7a-bd13-0f83b9e75a3b.jpg">
+
+<link rel="canonical" href="https://daojun0690.github.io/2020/10/17/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B/data-stucture/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>資料結構 | 大羅化の隨筆壇</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">大羅化の隨筆壇</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">坐而言不如從今日起</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-主頁">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>主頁</a>
+
+  </li>
+        <li class="menu-item menu-item-標籤">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-心路歷程">
+
+    <a href="/archives/" rel="section"><i class="fas fa-book-medical fa-fw"></i>心路歷程</a>
+
+  </li>
+        <li class="menu-item menu-item-關於我">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>關於我</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://daojun0690.github.io/2020/10/17/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B/data-stucture/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jeff Wang">
+      <meta itemprop="description" content="2020/09始">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大羅化の隨筆壇">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          資料結構
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-10-17 15:07:59" itemprop="dateCreated datePublished" datetime="2020-10-17T15:07:59+08:00">2020-10-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2020-10-24 15:34:44" itemprop="dateModified" datetime="2020-10-24T15:34:44+08:00">2020-10-24</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="資料結構"><a href="#資料結構" class="headerlink" title="資料結構"></a>資料結構</h1><p>透過自訂資料型別，電腦專家從陣列開始，創造了四種常用的資料結構，再從這四種結構變化出其他模式。</p>
+<a id="more"></a>
+
+<ul>
+<li><p>陣列 array<br>陣列是一般學習者第一個學習到的資料結構，在之前已經練習過很多次了。它的特性是查找資料方便，能夠讓我們隨機進入(random access)結構裡。例如有一串陣列為 int a[4] = {0, 1, 2, 3};，我們可以直接搜尋 a[i]，就可以找到對應的值。相對於其他資料結構，陣列在記憶體區域是一連串的區塊，也比較不佔用空間。<br>陣列的缺點是，我們很難中途插入或刪除資料，得移動其他資料。以上述例子為例，要刪除 a[2]的值，得將 a[3]的值覆蓋 a[2]，把 a[4] 的值覆蓋 a[3]。陣列的尺寸也必須固定，在寫程式的當下就要確認要使用多少記憶體區域。</p>
+</li>
+<li><p>連結串列 Linked List ：<br>連結串列(linked list)是串列(List)的一種，是一種常見的資料結構，利用這個資料結構也能進一步實作出其他的資料結構，例如堆疊(Stack)和佇列(Queue)等。<br>特性是能夠不使用連續的記憶體空間的情況下，能夠保有並使用一份連續的資料；相對來看，陣列則需要使用連續的記憶體空間。<br><img src="https://images.vocus.cc/8821dc7a-95ee-4b7a-bd13-0f83b9e75a3b.jpg" alt="Linked List"><br>串列要插入資料非常方便，指標指過去就好了，刪除也是，指標換過去就可以。缺點也很明顯，由於不是一連串的記憶體空間，除非一個一個檢查，我們不會知道串列裡每一個的值為何。排序時也不是很方便，除非在一開始建資料時，就針對大小排序了。</p>
+</li>
+<li><p>雜湊表 hash table<br>雜湊表專門用在資料無須排序時，它是陣列與連結串列的結合。我們這裡用本週作業裡的函式來解釋。我們做一個開頭26個字母的雜湊表，所以我們會把apple放到a箱子，banna放到b箱子。</p>
+<details>
+<summary>click to 展開</summary>
+<pre><code>
+//有26個字母
+const unsigned int N = 26;
+//陣列一共有26個記憶體區塊
+node *table[N];
+// 雜湊函式，會回傳數字
+unsigned int hash(const char *word)
+&#123;
+  // 按照ASCII表，取第一個字母對應的值
+  int index = tolower(word[0]);
+  // 用26取餘數，確定值會在0~25之間。
+  return (index % N);
+&#125;
+// 讀取檔案資料，建立雜湊表
+bool load(const char *dictionary)
+&#123;
+  // 打開檔案
+  FILE *file = fopen(dictionary, "r");
+  if (file == NULL)
+  &#123;
+      return false;
+  &#125;
+  // 在dictionary.h有定義每個單字長度
+  char word[LENGTH + 1];
+  // 一個一個讀取字串
+  // EOF就是到底了
+  // fscanf()會把file儲存到word裡面
+  while (fscanf(file, "%s", word) != EOF)
+  &#123;
+      // 配置記憶體
+      node *n = malloc(sizeof(node));
+      if (n == NULL)
+      &#123;
+          return false;
+      &#125;
+      // 將word裡的值，複製到n->word
+      strcpy(n->word, word);
+  //n->next指標指向NULL
+      n->next = NULL;
+      // 找看看這個單字應該在哪一個箱子裡，取一個值
+      int index = hash(word);
+      // 如果table[index]沒有值，就把table[index]指過去
+      if (table[index] == NULL)
+      &#123;
+          table[index] = n;
+      &#125;
+  // 如果table[index]儲存的指標，已經有指向值了
+      else
+      &#123;
+          // 原本n->next替換成table[index]原本儲存的指標
+      n->next = table[index];
+      // 再把table[index]替換成新設的n指標
+          table[index] = n;
+      &#125;
+      total++;
+  &#125;
+// 記得關閉檔案
+  fclose(file);
+  return true;
+&#125;
+</code></pre>
+</details>
+雜湊表結合了陣列與連結串列的優缺點，如果我們記憶體空間足夠，我們可以把陣列設得大一點，未來要查找資料就很迅速。要刪除的話，就利用指標的特性去重新設定指標。不過雜湊表的排序不是很方便。所佔的空間會稍微大一點，但是小於字典樹。
+</li>
+<li><p>Tree：<br>樹(Tree)是一種常見的資料結構，他是一種階層式(Hierarchical)的資料集合, 實作上可以用連結串列完成<br>字典樹是雜湊表的再變形，等於是有一堆陣列彼此串起來。字典樹在建立時，就已經排序了，由於字典樹每一個節點都有陣列，查找資料非常快。不過它所佔用的空間最大。</p>
+</li>
+<li><p>Stack：<br>是一種後進先出(Last-In-First-Out, LIFO)的排程，而在此資料結構中至少會實作兩個操作：<br>push：將資料放入堆疊頂端 / pop：取出堆疊頂端之資料<br>在實作上一般可以使用陣列或連結串列(LinkedList)兩種方式來實作</p>
+</li>
+<li><p>Queue：<br>佇列(Queue) 是一種先進先出(First-In-First-Out, FIFO)的排程，而在此資料結構中至少會實作兩個操作：<br>enqueue：將資料放入佇列尾端。(註：C++中用push、Java用offer、也有add等不同的用字)<br>dequeue：取出佇列前端之資料。(註：C++中用pop、Java用poll、也有remove等不同的用字)<br>在實作上一般使用連結串列(LinkedList)來實作，使用陣列同樣可以達成，但較為複雜</p>
+</li>
+</ul>
+<h2 id="關於變數儲存與記憶體"><a href="#關於變數儲存與記憶體" class="headerlink" title="關於變數儲存與記憶體"></a>關於變數儲存與記憶體</h2><h3 id="記憶體中資料配置的方式"><a href="#記憶體中資料配置的方式" class="headerlink" title="記憶體中資料配置的方式"></a>記憶體中資料配置的方式</h3><ol>
+<li>   動態配置（Dynamic Memory Allocation）:<br>以非循序配置方式儲存資料。利用鏈結串列之資料結構，勿需事先宣告固定記憶空間。當資料插入或刪除後，整個資料次序改變。例如：指標(pointer)、樹(tree)。</li>
+<li>   靜態配置（Static Memory Allocation）:<br>以循序配置方式儲存資料，使用前要宣告一個大小、長度固定的記憶空間。當資料插入或刪除後，不改變其資料次序。例如：陣列(array)。</li>
+</ol>
+<h3 id="變數使用"><a href="#變數使用" class="headerlink" title="變數使用"></a>變數使用</h3><ul>
+<li>Local 變數<br>一般區域變數均被宣告在某區段之內，事實上區域變數是用 stack 或 heap 方式 佔用記憶體空間</li>
+<li>static 變數<br>static變數的宣告方式，也是一種區域變數的宣告方式它和區域變數最大的不同在於存在 global區，static變數不會在程式執行完這個區段後，將記憶體回收。</li>
+<li>Global 外在變數<br>外在變數是指定義於程式外部的變數存在 global區，當一個變數被定義為外在變數後，其他所有的函式或區段皆可使用此變數。</li>
+</ul>
+<h3 id="記憶體儲存變數分區"><a href="#記憶體儲存變數分區" class="headerlink" title="記憶體儲存變數分區"></a>記憶體儲存變數分區</h3><p>?</p>
+<h3 id="重要基本補充：C語言所定義的資料型別如下"><a href="#重要基本補充：C語言所定義的資料型別如下" class="headerlink" title="重要基本補充：C語言所定義的資料型別如下"></a>重要基本補充：C語言所定義的資料型別如下</h3><p>這些內容非常基本卻又很容易忘記，寫成是容易忽略而造成overflow溢位問題。<br>?</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80/" rel="tag"># 程式語言</a>
+              <a href="/tags/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B/" rel="tag"># 資料結構</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/10/09/%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80/c-and-cpp/" rel="prev" title="C/C++ - 常見 C 語言觀念題目總整理（適合考試和面試）">
+      <i class="fa fa-chevron-left"></i> C/C++ - 常見 C 語言觀念題目總整理（適合考試和面試）
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/10/17/%E6%BC%94%E7%AE%97%E6%B3%95/Algorithm/" rel="next" title="演算法">
+      演算法 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B"><span class="nav-number">1.</span> <span class="nav-text">資料結構</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%9C%E6%96%BC%E8%AE%8A%E6%95%B8%E5%84%B2%E5%AD%98%E8%88%87%E8%A8%98%E6%86%B6%E9%AB%94"><span class="nav-number">1.1.</span> <span class="nav-text">關於變數儲存與記憶體</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A8%98%E6%86%B6%E9%AB%94%E4%B8%AD%E8%B3%87%E6%96%99%E9%85%8D%E7%BD%AE%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="nav-number">1.1.1.</span> <span class="nav-text">記憶體中資料配置的方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%8A%E6%95%B8%E4%BD%BF%E7%94%A8"><span class="nav-number">1.1.2.</span> <span class="nav-text">變數使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A8%98%E6%86%B6%E9%AB%94%E5%84%B2%E5%AD%98%E8%AE%8A%E6%95%B8%E5%88%86%E5%8D%80"><span class="nav-number">1.1.3.</span> <span class="nav-text">記憶體儲存變數分區</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%87%8D%E8%A6%81%E5%9F%BA%E6%9C%AC%E8%A3%9C%E5%85%85%EF%BC%9AC%E8%AA%9E%E8%A8%80%E6%89%80%E5%AE%9A%E7%BE%A9%E7%9A%84%E8%B3%87%E6%96%99%E5%9E%8B%E5%88%A5%E5%A6%82%E4%B8%8B"><span class="nav-number">1.1.4.</span> <span class="nav-text">重要基本補充：C語言所定義的資料型別如下</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Jeff Wang</p>
+  <div class="site-description" itemprop="description">2020/09始</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/DAOjun0690" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;DAOjun0690" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jeff Wang</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 強力驅動
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

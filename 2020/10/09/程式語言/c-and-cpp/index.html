@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-ankh-solid.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-ankh-solid.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"daojun0690.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="許多地方參考至Mr.Orange的一文">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C&#x2F;C++ - 常見 C 語言觀念題目總整理（適合考試和面試）">
+<meta property="og:url" content="https://daojun0690.github.io/2020/10/09/%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80/c-and-cpp/index.html">
+<meta property="og:site_name" content="大羅化の隨筆壇">
+<meta property="og:description" content="許多地方參考至Mr.Orange的一文">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.imgur.com/CnL8Ctp.png">
+<meta property="article:published_time" content="2020-10-09T02:57:34.000Z">
+<meta property="article:modified_time" content="2020-10-23T06:07:05.147Z">
+<meta property="article:author" content="Jeff Wang">
+<meta property="article:tag" content="程式語言">
+<meta property="article:tag" content="c">
+<meta property="article:tag" content="面試 interview">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/CnL8Ctp.png">
+
+<link rel="canonical" href="https://daojun0690.github.io/2020/10/09/%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80/c-and-cpp/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>C/C++ - 常見 C 語言觀念題目總整理（適合考試和面試） | 大羅化の隨筆壇</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">大羅化の隨筆壇</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">坐而言不如從今日起</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-主頁">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>主頁</a>
+
+  </li>
+        <li class="menu-item menu-item-標籤">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-心路歷程">
+
+    <a href="/archives/" rel="section"><i class="fas fa-book-medical fa-fw"></i>心路歷程</a>
+
+  </li>
+        <li class="menu-item menu-item-關於我">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>關於我</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://daojun0690.github.io/2020/10/09/%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80/c-and-cpp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jeff Wang">
+      <meta itemprop="description" content="2020/09始">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大羅化の隨筆壇">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          C/C++ - 常見 C 語言觀念題目總整理（適合考試和面試）
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-10-09 10:57:34" itemprop="dateCreated datePublished" datetime="2020-10-09T10:57:34+08:00">2020-10-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2020-10-23 14:07:05" itemprop="dateModified" datetime="2020-10-23T14:07:05+08:00">2020-10-23</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>許多地方參考至<a target="_blank" rel="noopener" href="https://mropengate.blogspot.com/2017/08/cc-c.html">Mr.Orange</a>的一文</p>
+<a id="more"></a>
+
+<h3 id="一、指標"><a href="#一、指標" class="headerlink" title="一、指標"></a>一、指標</h3><p>指標 (pointer)：一個指向某個儲存位址的變數，語法為</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int *ptr &#x3D; &amp;var;</span><br></pre></td></tr></table></figure>
+<p>其中</p>
+<ul>
+<li><code>&amp;</code>：取變數位址</li>
+<li><code>*</code>：表示為指標變數</li>
+</ul>
+<p>也可用於函數變為函式指標 (function pointer)，語法為</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> (*fptr)(type_a, type_b) = &amp;func;</span><br></pre></td></tr></table></figure>
+<p>常用的地方如下</p>
+<ul>
+<li>函式 sort 時傳入判斷準則</li>
+<li>multithread 傳函數進入建立 thread 的 API 中</li>
+<li>callback function (一種事件導向的函式)</li>
+</ul>
+<h4 id="1-基礎指標判讀"><a href="#1-基礎指標判讀" class="headerlink" title="1. 基礎指標判讀"></a>1. 基礎指標判讀</h4><p>指標判讀大原則為「從右讀到左」，例如：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a; <span class="comment">// 一個整型數</span></span><br><span class="line"><span class="keyword">int</span> *a; <span class="comment">// 一個指向整數的指標</span></span><br><span class="line"><span class="keyword">int</span> **a; <span class="comment">// 一個指向指標的指標，它指向的指標是指向一個整型數</span></span><br><span class="line"><span class="keyword">int</span> a[<span class="number">10</span>]; <span class="comment">// 一個有10個整數型的陣列</span></span><br><span class="line"><span class="keyword">int</span> *a[<span class="number">10</span>]; <span class="comment">// 一個有10個指標的陣列，該指標是指向一個整數型的</span></span><br><span class="line"><span class="keyword">int</span> (*a)[<span class="number">10</span>]; <span class="comment">// 一個指向有10個整數型陣列的指標</span></span><br><span class="line"><span class="keyword">int</span> (*a)(<span class="keyword">int</span>); <span class="comment">// 一個指向函數的指標，該函數有一個整數型參數並返回一個整數</span></span><br><span class="line"><span class="keyword">int</span> (*a[<span class="number">10</span>])(<span class="keyword">int</span>); <span class="comment">// 一個有10個指標的陣列，該指標指向一個函數，該函數有一個整數型參數並返回一個整數</span></span><br></pre></td></tr></table></figure>
+<p>注意宣告兩個指標時不能寫做 int* a, b; 因為前式等價於 int* a; int b;。<br>連續宣告兩個指標用 <code>int *a, *b;</code></p>
+<h4 id="2-指標與其他關鍵字混用"><a href="#2-指標與其他關鍵字混用" class="headerlink" title="2. 指標與其他關鍵字混用"></a>2. 指標與其他關鍵字混用</h4><p>一樣右讀到左，例如：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> * foo; <span class="comment">// 一個 pointer，指向 const int 變數。</span></span><br><span class="line"><span class="keyword">int</span> <span class="keyword">const</span> * foo; <span class="comment">// 一個 pointer，指向 const int 變數。</span></span><br><span class="line"><span class="keyword">int</span> * <span class="keyword">const</span> foo; <span class="comment">// 一個 const pointer，指向 int 變數。</span></span><br><span class="line"><span class="keyword">int</span> <span class="keyword">const</span> * <span class="keyword">const</span> foo; <span class="comment">// 一個 const pointer，指向 const int 變數。</span></span><br></pre></td></tr></table></figure>
+<p>關鍵字 volatile 等等判讀方式相同。</p>
+<h3 id="二、call-by-value-call-by-reference"><a href="#二、call-by-value-call-by-reference" class="headerlink" title="二、call by value, call by reference"></a>二、call by value, call by reference</h3><ol>
+<li><p>call by value : 最常見的函式寫法，呼叫者和被呼叫者的變數各自佔有記憶體，將參數複製再傳給函式。</p>
+</li>
+<li><p>call by reference : 呼叫者和被呼叫者的變數使用相同的記憶體位址，因此在被呼叫函式中改變變數時，變動結果會保留。(C++ 才有，寫法為 type func(type &amp;var) { … })</p>
+</li>
+</ol>
+<p><strong>[用心去感覺] call by address (?)</strong></p>
+<p>C 語言之父明確表示 C 語言只有 call by value。坊間有 call by address 的說法其實是方便教學，指的是對指標變數進行操作的 call by value，具體的執行效果和 call by reference 一樣。</p>
+<p>下面兩篇文章對這個觀念講得很清楚：</p>
+<p>MLab - 什麼是傳值call by value、傳址call by address、傳參考call by reference<br><a target="_blank" rel="noopener" href="http://wp.mlab.tw/?p=176">http://wp.mlab.tw/?p=176</a></p>
+<p>郭晉魁教授 - c語言有沒有call by reference(or call by address) ?<br><a target="_blank" rel="noopener" href="http://eportfolio.lib.ksu.edu.tw/~T093000170/blog?node=000000119">http://eportfolio.lib.ksu.edu.tw/~T093000170/blog?node=000000119</a></p>
+<h3 id="三、變數範圍和生命周期（關鍵字-static）"><a href="#三、變數範圍和生命周期（關鍵字-static）" class="headerlink" title="三、變數範圍和生命周期（關鍵字 static）"></a>三、變數範圍和生命周期（關鍵字 static）</h3><ol>
+<li><p>local 變數 : local 變數僅活在該函式內，存放位置在 stack 或 heap 記憶體中。</p>
+</li>
+<li><p>static 變數 : static 變數生命周期 (life time) 跟程式一樣長，而範圍 (scope) 則維持不變，即在宣告的函式之外仍無法存取 static 變數。</p>
+</li>
+<li><p>global 變數 : 所有區段皆可使用此變數。</p>
+</li>
+</ol>
+<p><strong>[用心去感覺] static vs global</strong></p>
+<p>除了範圍不同，static 變數只有宣告的檔案可以使用；而 global 變數可加上 extern 關鍵字修飾，即可在其他檔案以 .h 標頭檔方式使用該變數 (也就是 internal linkage 和 external linkage 的不同)。<br>**[用心去感覺] 記憶體的配置**</p>
+<ul>
+<li>Stack : 存放函數的參數、區域變數等，由空間配置系統自行產生與回收。(會稱作 stack 是由於其配置遵守 LIFO)</li>
+<li>Heap : 一般由程式設計師分配釋放，執行時才會知道配置大小，如 malloc/new 和 free/delete。(注意其資料結構不是 DS 中的 heap 而是 link-list)</li>
+<li>Global : 包含 BSS (未初始化的靜態變數)、data section (全域變數、靜態變數) 和 text/code (常數字元)。<br><img src="https://i.imgur.com/CnL8Ctp.png" alt="C 語言程式記憶體配置"><br>[重要!] process 在記憶體中的配置圖</li>
+</ul>
+<p>[例題] 配置練習</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a=<span class="number">0</span>;   <span class="comment">//global 初始化區</span></span><br><span class="line"><span class="keyword">char</span> *p1;  <span class="comment">//global 未初始化區</span></span><br><span class="line">main()&#123;</span><br><span class="line">    <span class="keyword">int</span> b;             <span class="comment">// stack</span></span><br><span class="line">    <span class="keyword">char</span> s[]=<span class="string">&quot;abc&quot;</span>;    <span class="comment">// stack</span></span><br><span class="line">    <span class="keyword">char</span> *p2;          <span class="comment">// stack</span></span><br><span class="line">    <span class="keyword">char</span> *p3=<span class="string">&quot;123456&quot;</span>; <span class="comment">// 123456\0 在常量區，p3在stack。</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> c=<span class="number">0</span>;   <span class="comment">// global (static) 初始化區</span></span><br><span class="line">    p1 = (<span class="keyword">char</span>*)<span class="built_in">malloc</span>(<span class="number">10</span>);</span><br><span class="line">    p2 = (<span class="keyword">char</span>*)<span class="built_in">malloc</span>(<span class="number">20</span>);  <span class="comment">//分配得來得10和20位元組的區域在heap</span></span><br><span class="line">    <span class="built_in">strcpy</span>(p1,<span class="string">&quot;123456&quot;</span>);  </span><br><span class="line">    <span class="comment">//123456\0 在常量區，編譯器可能會將它與 p3 中的 123456\0 優化成一個地方。</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>[例題] static 練習</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">int</span> num_a;</span><br><span class="line"><span class="comment">// 專屬於整個檔案的全域變數，其他檔案不能存取</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">func</span> <span class="params">(<span class="keyword">int</span> num_b)</span> </span>&#123; <span class="comment">// stack 區</span></span><br><span class="line"> <span class="keyword">int</span> num_c; <span class="comment">// stack 區</span></span><br><span class="line"></span><br><span class="line"> <span class="keyword">static</span> <span class="keyword">int</span> num_d;</span><br><span class="line"> <span class="comment">//scope不變，只能在函數 func 內呼叫，但 lifetime 是整支程式執行的時間。</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="四、關鍵字-const"><a href="#四、關鍵字-const" class="headerlink" title="四、關鍵字 const"></a>四、關鍵字 const</h3><p>const 通常表示只可讀取不可寫入的變數，常用來宣告常數。使用 const 有以下好處：</p>
+<ul>
+<li>提升程式碼可讀性</li>
+<li>使編譯器保護那些不希望被改變的參數</li>
+<li>給優化器一些附加的資訊</li>
+</ul>
+<p><strong>[用心去感覺] const vs #define</strong></p>
+<ol>
+<li>編譯器處理方式 : define 在預處理階段展開；const 在編譯階段使用。</li>
+<li>類型和安全檢查 : const 會在編譯階段會執行類型檢查，define 則不會。</li>
+<li>儲存方式 : define 直接展開不會分配記憶體，const 則會在記憶體中分配。</li>
+</ol>
+<h3 id="五、關鍵字-volatile"><a href="#五、關鍵字-volatile" class="headerlink" title="五、關鍵字 volatile"></a>五、關鍵字 volatile</h3><p>由於嵌入式系統常處理 I/O、中斷、即時操作系統 (RTOS) 相關的問題，因此在嵌入式系統開發中 volatile 尤為重要。被 volatile 修飾的變數代表它可能會被不預期的更新，因此告知編譯器不對它涉及的地方做最佳化，並在每次操作它的時候都讀取該變數實體位址上最新的值，而不是讀取暫存器的值。</p>
+<p>volatile 常見的應用：</p>
+<ol>
+<li>修飾中斷處理程式中 (ISR) 中可能被修改的全域變數。</li>
+<li>修飾多執行緒 (multi-threaded) 的全域變數。</li>
+<li>設備的硬體暫存器 (如狀態暫存器)</li>
+</ol>
+<p><strong>[用心去感覺] const 和 volatile 合用</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">extern</span> <span class="keyword">const</span> <span class="keyword">volatile</span> <span class="keyword">unsigned</span> <span class="keyword">int</span> rt_clock;</span><br></pre></td></tr></table></figure>
+<p>這是在 RTOS kernel 常見的一種宣告：rt_clock 通常是指系統時鐘，它經常被時鐘中斷進行更新。所以它是 volatile。因此在用的時候，要讓編譯器每次從記憶體裡面取值。而 rt_clock 通常只有一個寫者（時鐘中斷），其他地方對其的使用通常都是唯讀的。所以將其聲明為 const，表示這裏不應該修改這個變數。所以 volatile 和 const 是兩個不矛盾的東西，並且一個物件同時具備這兩種屬性也是有實際意義的。</p>
+<h3 id="六、關鍵字-inline"><a href="#六、關鍵字-inline" class="headerlink" title="六、關鍵字 inline"></a>六、關鍵字 inline</h3><p>inline 可以將修飾的函式設為行內函式，即像巨集 (define) 一樣將該函式展開編譯，用來加速執行速度。</p>
+<p>inline 和 #define 的差別在於：</p>
+<ul>
+<li>inline 函數只對參數進行一次計算，避免了部分巨集易產生的錯誤。</li>
+<li>inline 函數的參數類型被檢查，並進行必要的型態轉換。</li>
+<li>巨集定義盡量不使用於複雜的函數</li>
+<li>用 inline 後編譯器不一定會實作，僅為建議。</li>
+</ul>
+<h3 id="七、前處理器相關"><a href="#七、前處理器相關" class="headerlink" title="七、前處理器相關"></a>七、前處理器相關</h3><p>前處理器主要處理加入檔案 #include、巨集定義 #define 和 #undef 條件編譯。</p>
+<h4 id="1-巨集-define"><a href="#1-巨集-define" class="headerlink" title="1. 巨集 #define"></a>1. 巨集 #define</h4><p><code>#define</code> 是巨集，在前置處理器 (preprocessor) 執行時處理，將要替換的程式碼展開做文字替換。define 語法範例如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PI 3.1415926    <span class="comment">//常數巨集</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> A(x) x    <span class="comment">//函數巨集</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MIN(A，B)  ( (A)  &lt;= (B) ? (A) : (B))</span></span><br></pre></td></tr></table></figure>
+<p>注意把參數用括號括起來，不然容易發生以下錯誤：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> SUM(a,b)  a+b</span></span><br></pre></td></tr></table></figure>
+<p>當 <code>SUM(2,5)*10</code> 時，因為沒有括弧先乘除後加減，得輸出為 52，錯誤。</p>
+<h4 id="2-引入防護和條件編譯"><a href="#2-引入防護和條件編譯" class="headerlink" title="2. 引入防護和條件編譯"></a>2. 引入防護和條件編譯</h4><p>引入防護 (Include guard) 是一種條件編譯，用於防範 #include 指令重複引入的問題。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 避免重複引入 */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> MYHEADER</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MYHEADER</span></span><br><span class="line">...</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<p>第一次被引入時會定義巨集 MYHEADER，再次引入時判斷 #ifndef 測試失敗，因此編譯器會直接跳到 #endif，由此避免了重複引用。另有非標準的指令 #pragma once 提供相同效果，但由於可攜性不如上例，因此大多時候還是上面提到的方法為主。</p>
+<p>條件編譯還有一些其它應用：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 若前處理器已經 define MYHEADER，就編譯 part A，否則編譯 part B。 */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> MYHEADER</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MYHEADER</span></span><br><span class="line">   <span class="comment">// part A</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line">   <span class="comment">// part B</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* DEBUG flag */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> DEBUG</span></span><br><span class="line">   print (<span class="string">&quot;device_open(%p) &quot;</span>, file);</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+
+<h3 id="八、bitwise-operator"><a href="#八、bitwise-operator" class="headerlink" title="八、bitwise operator"></a>八、bitwise operator</h3><p>邏輯上的運算子在 C 中的語法分別如下：</p>
+<ul>
+<li>AND （&amp;）</li>
+<li>OR（|）</li>
+<li>NOT（!）</li>
+<li>XOR（^）// bit值不一樣為 1</li>
+<li>complement（~）</li>
+<li>shift (&lt;&lt;, &gt;&gt;)</li>
+</ul>
+<p>bitwise 的操作常與 “0x” 這種 16 進位表示法，方便轉換操作。<br>[例題] 基本運算</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">unsigned</span> <span class="keyword">long</span> num_a = <span class="number">0x00001111</span>;</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">long</span> num_b = <span class="number">0x00000202</span>;</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">long</span> num_c;</span><br><span class="line"></span><br><span class="line">num_c = num_a &amp; (~num_b);</span><br><span class="line">num_c = num_c | num_b;</span><br><span class="line"></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%lx&quot;</span>, num_c); <span class="comment">// 00001313</span></span><br></pre></td></tr></table></figure>
+<p>[例題] mask 方法做 bitwise 操作</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = a | <span class="number">7</span>    <span class="comment">// 最右側 3 位設為 1，其餘不變。</span></span><br><span class="line">a = a &amp; (~<span class="number">7</span>) <span class="comment">// 最右側 3 位設為 0，其餘不變。</span></span><br><span class="line">a = a ^ <span class="number">7</span>    <span class="comment">// 最右側 3 位執行 NOT operator，其餘不變。</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="九、複製：memcpy-和-strcpy"><a href="#九、複製：memcpy-和-strcpy" class="headerlink" title="九、複製：memcpy 和 strcpy"></a>九、複製：memcpy 和 strcpy</h3><h4 id="1-記憶體複製"><a href="#1-記憶體複製" class="headerlink" title="1. 記憶體複製"></a>1. 記憶體複製</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> *<span class="title">memcpy</span><span class="params">( <span class="keyword">void</span> *dest, <span class="keyword">const</span> <span class="keyword">void</span> *src, <span class="keyword">size_t</span> count )</span></span>;</span><br></pre></td></tr></table></figure>
+<p>memcpy() 可以複製任何類型資料，不處理字串結束 ‘\0’ 的情況，當 <code>*src</code> 長度大於 <code>*dest</code> 時會 buffer overflow (編譯時不會錯誤)。</p>
+<h4 id="2-字串複製"><a href="#2-字串複製" class="headerlink" title="2. 字串複製"></a>2. 字串複製</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> *<span class="title">strcpy</span><span class="params">( <span class="keyword">void</span> *dest, <span class="keyword">const</span> <span class="keyword">void</span> *src)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>strcpy() 只能用於字串複製，不需要指定長度，因為會自動偵測以 ‘\0’ 為結尾，當 <code>*src</code> 長度大於 <code>*dest</code> 時會 buffer overflow (<code>*dest</code> 將沒有 \0)。<br><strong>舉例</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span></span>&#123;</span><br><span class="line"> <span class="keyword">const</span> <span class="keyword">char</span> *str1 = <span class="string">&quot;abc\0def&quot;</span>;</span><br><span class="line"> <span class="keyword">char</span> str2[<span class="number">16</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line"> <span class="keyword">char</span> str3[<span class="number">16</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line"></span><br><span class="line"> <span class="built_in">strcpy</span>(str2, str1);</span><br><span class="line"> <span class="built_in">memcpy</span>(str3, str1, <span class="keyword">sizeof</span>(str3)); <span class="comment">// 8</span></span><br><span class="line"> <span class="built_in">printf</span>(<span class="string">&quot;str2 = %s\n&quot;</span>, str2);    <span class="comment">// str2 = abc</span></span><br><span class="line"> <span class="built_in">printf</span>(<span class="string">&quot;str3 = %c\n&quot;</span>, str3[<span class="number">5</span>]); <span class="comment">// str3 = e</span></span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="十、延伸性資料型態：struct、typedef、union-和-enum"><a href="#十、延伸性資料型態：struct、typedef、union-和-enum" class="headerlink" title="十、延伸性資料型態：struct、typedef、union 和 enum"></a>十、延伸性資料型態：struct、typedef、union 和 enum</h3><h4 id="1-結構-struct"><a href="#1-結構-struct" class="headerlink" title="1. 結構 struct"></a>1. 結構 struct</h4><p>struct 是使用者自定的型態，包含數個不同資料型態的變數，將不同的資料型態關聯在一起，使他們的關聯更直覺。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> [<span class="title">structName</span>] &#123;</span></span><br><span class="line"> <span class="keyword">char</span> name[<span class="number">16</span>];</span><br><span class="line"> <span class="keyword">int</span> age;</span><br><span class="line"> <span class="class"><span class="keyword">struct</span> [<span class="title">structName</span>] *<span class="title">ptr</span>;</span>  </span><br><span class="line"> <span class="comment">// 不能含有自己，但可以有自己型別的指標。</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span> </span>&#123;</span><br><span class="line"> <span class="class"><span class="keyword">struct</span> [<span class="title">structName</span>] <span class="title">person1</span> =</span> &#123;<span class="string">&quot;Amy&quot;</span>, <span class="number">20</span> &#125;; <span class="comment">// 初始化</span></span><br><span class="line"> person.age = <span class="number">21</span>; <span class="comment">// 操作</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-重新定義型態名稱-typedef"><a href="#2-重新定義型態名稱-typedef" class="headerlink" title="2. 重新定義型態名稱 typedef"></a>2. 重新定義型態名稱 typedef</h4><p>typedef 保留字可以為資料型態建立別名，使程式更易閱讀理解。例如：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">typeof <span class="class"><span class="keyword">struct</span> [<span class="title">structName</span>] &#123;</span></span><br><span class="line"> <span class="keyword">char</span> name[<span class="number">16</span>];</span><br><span class="line"> <span class="keyword">int</span> age;</span><br><span class="line"> <span class="class"><span class="keyword">struct</span> [<span class="title">structName</span>] *<span class="title">ptr</span>;</span></span><br><span class="line">&#125; PERSON;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span> </span>&#123;</span><br><span class="line"> PERSON person1 = &#123;<span class="string">&quot;Amy&quot;</span>, <span class="number">20</span> &#125;;</span><br><span class="line"> person.age = <span class="number">21</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-列舉-enum"><a href="#3-列舉-enum" class="headerlink" title="3. 列舉 enum"></a>3. 列舉 enum</h4><p>enum 是一種常數定義方式，可以提升可讀性，enum 裡的識別字會以 int 的型態，從指定的值開始遞增排列 (預設為 0)。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">enum</span> &#123;</span>SUN=<span class="number">0</span>, MON, TUE, WED, THU, FRI, SAT&#125; week_type;</span><br><span class="line">week_type week = WED;</span><br><span class="line"><span class="keyword">if</span>(week==WED)</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;week&lt;&lt;<span class="built_in">endl</span>; <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="4-共用結構-union"><a href="#4-共用結構-union" class="headerlink" title="4. 共用結構 union"></a>4. 共用結構 union</h4><p>電腦架構早期記憶體空間比較不足，因此需要使用共用結構讓各變數共用一塊記憶體，union 所需的記憶體空間大小由最大的成員變數決定，例如以下 union 的大小為 8 位元組 (upper bound double)。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">union</span> <span class="title">data</span>&#123;</span></span><br><span class="line"> <span class="keyword">char</span> c;</span><br><span class="line"> <span class="keyword">int</span> num;</span><br><span class="line"> <span class="keyword">double</span> fnum;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">union</span> <span class="title">data</span> <span class="title">a</span>, <span class="title">b</span>;</span></span><br></pre></td></tr></table></figure>
+<p>struct 是每個成員變數都配置一段空間，union 則是共用一段記憶體空間。另外，union 需注意記憶體內的排列方式，如 little-endian 方法排列，int 會放在 double 的 byte 3~0 的位置，從而改變 double 讀取時的值。</p>
+<h3 id="補充-未定義行為-Undefined-behavior"><a href="#補充-未定義行為-Undefined-behavior" class="headerlink" title="[補充] 未定義行為 (Undefined behavior)"></a>[補充] 未定義行為 (Undefined behavior)</h3><p>常見的語法 i++ 和 ++i 具有以下性質：</p>
+<ul>
+<li>i++ : 先用 i ，再將 i+1</li>
+<li>++i : 先 i+1，再用 i</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i = <span class="number">10</span></span><br><span class="line">i = i++ + ++i;</span><br></pre></td></tr></table></figure>
+<p>這個問題的標準答案是</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">i = i++ + ++i;</span><br><span class="line">i = <span class="number">10</span> + ++i;</span><br><span class="line">i = <span class="number">10</span> + <span class="number">12</span>;</span><br><span class="line">i = <span class="number">22</span></span><br></pre></td></tr></table></figure>
+<p>但是這是有爭議的！編譯時會有警告訊息</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80/" rel="tag"># 程式語言</a>
+              <a href="/tags/c/" rel="tag"># c</a>
+              <a href="/tags/%E9%9D%A2%E8%A9%A6-interview/" rel="tag"># 面試 interview</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/09/27/markdown/" rel="prev" title="學習：Markdown語法簡介">
+      <i class="fa fa-chevron-left"></i> 學習：Markdown語法簡介
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/10/17/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B/data-stucture/" rel="next" title="資料結構">
+      資料結構 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E6%8C%87%E6%A8%99"><span class="nav-number">1.</span> <span class="nav-text">一、指標</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%9F%BA%E7%A4%8E%E6%8C%87%E6%A8%99%E5%88%A4%E8%AE%80"><span class="nav-number">1.1.</span> <span class="nav-text">1. 基礎指標判讀</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E6%8C%87%E6%A8%99%E8%88%87%E5%85%B6%E4%BB%96%E9%97%9C%E9%8D%B5%E5%AD%97%E6%B7%B7%E7%94%A8"><span class="nav-number">1.2.</span> <span class="nav-text">2. 指標與其他關鍵字混用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81call-by-value-call-by-reference"><span class="nav-number">2.</span> <span class="nav-text">二、call by value, call by reference</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E8%AE%8A%E6%95%B8%E7%AF%84%E5%9C%8D%E5%92%8C%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%EF%BC%88%E9%97%9C%E9%8D%B5%E5%AD%97-static%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">三、變數範圍和生命周期（關鍵字 static）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E9%97%9C%E9%8D%B5%E5%AD%97-const"><span class="nav-number">4.</span> <span class="nav-text">四、關鍵字 const</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E9%97%9C%E9%8D%B5%E5%AD%97-volatile"><span class="nav-number">5.</span> <span class="nav-text">五、關鍵字 volatile</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E9%97%9C%E9%8D%B5%E5%AD%97-inline"><span class="nav-number">6.</span> <span class="nav-text">六、關鍵字 inline</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E5%89%8D%E8%99%95%E7%90%86%E5%99%A8%E7%9B%B8%E9%97%9C"><span class="nav-number">7.</span> <span class="nav-text">七、前處理器相關</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%B7%A8%E9%9B%86-define"><span class="nav-number">7.1.</span> <span class="nav-text">1. 巨集 #define</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%BC%95%E5%85%A5%E9%98%B2%E8%AD%B7%E5%92%8C%E6%A2%9D%E4%BB%B6%E7%B7%A8%E8%AD%AF"><span class="nav-number">7.2.</span> <span class="nav-text">2. 引入防護和條件編譯</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%AB%E3%80%81bitwise-operator"><span class="nav-number">8.</span> <span class="nav-text">八、bitwise operator</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B9%9D%E3%80%81%E8%A4%87%E8%A3%BD%EF%BC%9Amemcpy-%E5%92%8C-strcpy"><span class="nav-number">9.</span> <span class="nav-text">九、複製：memcpy 和 strcpy</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E8%A8%98%E6%86%B6%E9%AB%94%E8%A4%87%E8%A3%BD"><span class="nav-number">9.1.</span> <span class="nav-text">1. 記憶體複製</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%AD%97%E4%B8%B2%E8%A4%87%E8%A3%BD"><span class="nav-number">9.2.</span> <span class="nav-text">2. 字串複製</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E3%80%81%E5%BB%B6%E4%BC%B8%E6%80%A7%E8%B3%87%E6%96%99%E5%9E%8B%E6%85%8B%EF%BC%9Astruct%E3%80%81typedef%E3%80%81union-%E5%92%8C-enum"><span class="nav-number">10.</span> <span class="nav-text">十、延伸性資料型態：struct、typedef、union 和 enum</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E7%B5%90%E6%A7%8B-struct"><span class="nav-number">10.1.</span> <span class="nav-text">1. 結構 struct</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E9%87%8D%E6%96%B0%E5%AE%9A%E7%BE%A9%E5%9E%8B%E6%85%8B%E5%90%8D%E7%A8%B1-typedef"><span class="nav-number">10.2.</span> <span class="nav-text">2. 重新定義型態名稱 typedef</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%88%97%E8%88%89-enum"><span class="nav-number">10.3.</span> <span class="nav-text">3. 列舉 enum</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E5%85%B1%E7%94%A8%E7%B5%90%E6%A7%8B-union"><span class="nav-number">10.4.</span> <span class="nav-text">4. 共用結構 union</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A3%9C%E5%85%85-%E6%9C%AA%E5%AE%9A%E7%BE%A9%E8%A1%8C%E7%82%BA-Undefined-behavior"><span class="nav-number">11.</span> <span class="nav-text">[補充] 未定義行為 (Undefined behavior)</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Jeff Wang</p>
+  <div class="site-description" itemprop="description">2020/09始</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/DAOjun0690" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;DAOjun0690" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jeff Wang</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 強力驅動
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-ankh-solid.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-ankh-solid.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"daojun0690.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="什麼叫模組化？簡單來說，就是把特定功能分出來當成一個模組，需要的時候只要呼叫這個模組就好；而需要修正的時候也只要修正模組即可。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="物件導向 Object Oriented Programming">
+<meta property="og:url" content="https://daojun0690.github.io/2020/09/16/%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80/OOP/index.html">
+<meta property="og:site_name" content="大羅化の隨筆壇">
+<meta property="og:description" content="什麼叫模組化？簡單來說，就是把特定功能分出來當成一個模組，需要的時候只要呼叫這個模組就好；而需要修正的時候也只要修正模組即可。">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2020-09-16T09:41:14.000Z">
+<meta property="article:modified_time" content="2020-10-23T06:07:05.147Z">
+<meta property="article:author" content="Jeff Wang">
+<meta property="article:tag" content="程式語言">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://daojun0690.github.io/2020/09/16/%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80/OOP/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>物件導向 Object Oriented Programming | 大羅化の隨筆壇</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">大羅化の隨筆壇</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">坐而言不如從今日起</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-主頁">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>主頁</a>
+
+  </li>
+        <li class="menu-item menu-item-標籤">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-心路歷程">
+
+    <a href="/archives/" rel="section"><i class="fas fa-book-medical fa-fw"></i>心路歷程</a>
+
+  </li>
+        <li class="menu-item menu-item-關於我">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>關於我</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://daojun0690.github.io/2020/09/16/%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80/OOP/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jeff Wang">
+      <meta itemprop="description" content="2020/09始">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大羅化の隨筆壇">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          物件導向 Object Oriented Programming
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-09-16 17:41:14" itemprop="dateCreated datePublished" datetime="2020-09-16T17:41:14+08:00">2020-09-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2020-10-23 14:07:05" itemprop="dateModified" datetime="2020-10-23T14:07:05+08:00">2020-10-23</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>什麼叫模組化？簡單來說，就是把特定功能分出來當成一個模組，需要的時候只要呼叫這個模組就好；而需要修正的時候也只要修正模組即可。</p>
+<a id="more"></a>
+<h3 id="類別"><a href="#類別" class="headerlink" title="類別"></a>類別</h3><p>類別比較算是一個範本，裡面定義好該有的屬性和方法，其中方法又大概可以分為一般的方法、類別方法和建構子。例如我們可以定義一個學生類別，裏面包含了name、score 屬性，以及 getName() 方法、setScore() 方法。</p>
+<h3 id="物件"><a href="#物件" class="headerlink" title="物件"></a>物件</h3><p>物件則是實體的東西，由定義好的類別來建立一個物件。</p>
+<p>物件導向的三大特型：封裝、繼承、多型。</p>
+<h3 id="物件導向的封裝性"><a href="#物件導向的封裝性" class="headerlink" title="物件導向的封裝性"></a>物件導向的封裝性</h3><p>封裝(<strong>Encapsulation</strong>)，簡單來說就是抽象(Abstract)的概念。對一件事情只需要理解他的外在就好，不需要了解裡面內部的構造。 就像我們只要知道看電視的時候該怎麼轉台、調音量，並不需要知道裡面有多少電線和構造。</p>
+<p>而我們在寫類別的時候，把類別定義完，之後要寫物件就只要指定屬性和方法就好，並不需要知道方法是怎麼實作的。這也是一種封裝性。</p>
+<h3 id="物件導向的繼承性"><a href="#物件導向的繼承性" class="headerlink" title="物件導向的繼承性"></a>物件導向的繼承性</h3><p>繼承(<strong>Inheritance</strong>)，要設計一張和原有設計很像的設計圖，可以拿原本的設計圖當底開始畫。 這樣就不需要把相同的東西再宣告一次。</p>
+<p>比方說一個經典的例子，如果有一個 Car 類別：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Car</span> &#123;</span></span><br><span class="line">    <span class="keyword">public</span> String plate;</span><br><span class="line">    <span class="keyword">public</span> String brand;</span><br><span class="line">    <span class="keyword">public</span> String color;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>記載了車牌、廠牌、顏色三個屬性。如果要多新增一個 Taxi 類別，可以直接繼承 Car 屬性來用：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Taxi</span> <span class="title">extends</span> <span class="title">Car</span> &#123;</span></span><br><span class="line">    <span class="keyword">public</span> String plate;</span><br><span class="line">    <span class="keyword">public</span> String brand;</span><br><span class="line">    <span class="keyword">public</span> String color;</span><br><span class="line">    <span class="keyword">public</span> String driver;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>這就是經典的計程車繼承車 XD。</p>
+<h3 id="物件導向的多型性"><a href="#物件導向的多型性" class="headerlink" title="物件導向的多型性"></a>物件導向的多型性</h3><p>多型(<strong>Polymorphism</strong>)，簡單來說就是同名的方法。多個相同名稱的方法，傳入不同的參數，會執行不同的敘述。 比方說，一個計算面積的方法，如果傳入一個參數，就當正方形來算面積；傳入兩個參數，就當成長方形來算面積。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">computeArea</span><span class="params">(<span class="keyword">int</span> length)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> length * length;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">computeArea</span><span class="params">(<span class="keyword">int</span> length, <span class="keyword">int</span> width)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> length * width;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>其實多型包含多載(Overloading)和複寫(Overriding)，不過暫時知道多載就好了。</code></p>
+<p>以上就是物件導向的三個特性，不過，物件導向協助我們解決了什麼樣的問題？ 以下引用 Ruby 使用手冊：</p>
+<p>物件導向程式設計能夠將單調而重複的邏輯工作委派予資料，把我們對資料的概念從被動轉為主動。換而言之，</p>
+<ul>
+<li>資料不再是一個開蓋盒子，只能讓我們自己去找東西或放東西進去。</li>
+<li>資料變成是能夠運作的機器，具有標示明確的開關與功能。</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80/" rel="tag"># 程式語言</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/09/16/%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80/programming/" rel="prev" title="programming">
+      <i class="fa fa-chevron-left"></i> programming
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/09/16/%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80/front-end/" rel="next" title="前端 Front End">
+      前端 Front End <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%9E%E5%88%A5"><span class="nav-number">1.</span> <span class="nav-text">類別</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%A9%E4%BB%B6"><span class="nav-number">2.</span> <span class="nav-text">物件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%A9%E4%BB%B6%E5%B0%8E%E5%90%91%E7%9A%84%E5%B0%81%E8%A3%9D%E6%80%A7"><span class="nav-number">3.</span> <span class="nav-text">物件導向的封裝性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%A9%E4%BB%B6%E5%B0%8E%E5%90%91%E7%9A%84%E7%B9%BC%E6%89%BF%E6%80%A7"><span class="nav-number">4.</span> <span class="nav-text">物件導向的繼承性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%A9%E4%BB%B6%E5%B0%8E%E5%90%91%E7%9A%84%E5%A4%9A%E5%9E%8B%E6%80%A7"><span class="nav-number">5.</span> <span class="nav-text">物件導向的多型性</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Jeff Wang</p>
+  <div class="site-description" itemprop="description">2020/09始</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/DAOjun0690" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;DAOjun0690" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jeff Wang</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 強力驅動
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

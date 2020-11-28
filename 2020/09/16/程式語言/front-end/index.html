@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-ankh-solid.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-ankh-solid.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"daojun0690.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="AJAX">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端 Front End">
+<meta property="og:url" content="https://daojun0690.github.io/2020/09/16/%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80/front-end/index.html">
+<meta property="og:site_name" content="大羅化の隨筆壇">
+<meta property="og:description" content="AJAX">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://miro.medium.com/max/773/1*bPGr0j4kg8RKhbuSEUQZrg.png">
+<meta property="og:image" content="https://miro.medium.com/max/523/1*D7rwKWO7RHry8fKxybcZFw.png">
+<meta property="og:image" content="https://miro.medium.com/max/495/1*V08tsI3kjrUuRt7WfJKptQ.png">
+<meta property="article:published_time" content="2020-09-16T09:55:59.000Z">
+<meta property="article:modified_time" content="2020-10-23T15:00:19.808Z">
+<meta property="article:author" content="Jeff Wang">
+<meta property="article:tag" content="程式語言">
+<meta property="article:tag" content="前端">
+<meta property="article:tag" content="JavaScript">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://miro.medium.com/max/773/1*bPGr0j4kg8RKhbuSEUQZrg.png">
+
+<link rel="canonical" href="https://daojun0690.github.io/2020/09/16/%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80/front-end/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>前端 Front End | 大羅化の隨筆壇</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">大羅化の隨筆壇</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">坐而言不如從今日起</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-主頁">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>主頁</a>
+
+  </li>
+        <li class="menu-item menu-item-標籤">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-心路歷程">
+
+    <a href="/archives/" rel="section"><i class="fas fa-book-medical fa-fw"></i>心路歷程</a>
+
+  </li>
+        <li class="menu-item menu-item-關於我">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>關於我</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://daojun0690.github.io/2020/09/16/%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80/front-end/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jeff Wang">
+      <meta itemprop="description" content="2020/09始">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大羅化の隨筆壇">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          前端 Front End
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-09-16 17:55:59" itemprop="dateCreated datePublished" datetime="2020-09-16T17:55:59+08:00">2020-09-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2020-10-23 23:00:19" itemprop="dateModified" datetime="2020-10-23T23:00:19+08:00">2020-10-23</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><a href="#AJAX">AJAX</a></p>
+<a id="more"></a>
+<h2 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h2><ol>
+<li>甚麼是Ajax<blockquote>
+<p>非同步 JavaScript 及 XML（Asynchronous JavaScript and XML，AJAX） 並不能稱做是種「技術」，而是 2005 年時由 Jesse James Garrett 所發明的術語，描述一種使用數個既有技術的「新」方法。這些技術包括 HTML 或 XHTML、層疊樣式表、JavaScript、文件物件模型、XML、XSLT 以及最重要的 XMLHttpRequest 物件。<br>當這些技術被結合在 Ajax 模型中，Web 應用程式便能快速、即時更動介面及內容，不需要重新讀取整個網頁，讓程式更快回應使用者的操作。</p>
+</blockquote>
+</li>
+</ol>
+<p>重點在於後面的文字，可與伺服器進行非同步更新，不需要重新載入整個網頁<br><strong>每次要吃資料都要重載很多次</strong><br>-JavaScript<br>-HTTP<br>是我們會使用的東西</p>
+<p>• XMLHttpRequest (是JavaScript Object), 後臺發送HTTP請求<br>• JavaScript DOM , 修改HTML來展示資訊<br>• HTTP請求和伺服器交互</p>
+<p>規劃一個網頁含有AJAX技術<br>最常見的例子就是 用戶註冊 驗證信箱，驗證信箱或用戶名是否有被重複使用，不用等到全部填完資料才能驗證</p>
+<h2 id="Session與Cookie差別"><a href="#Session與Cookie差別" class="headerlink" title="Session與Cookie差別"></a>Session與Cookie差別</h2><p>http本身是個無狀態( Stateless)的協議，可以在Client與Server兩端進行溝通，但是無法紀錄網路上的行為。一般而言，今天如果要登入一個網站，每次訪問該網站時，就需要將登入帳密再輸入一次， 或是現在頁面上的資料填到一半，不小心把網頁關掉，重開頁面只好再重新輸入一次，使用起來會非常不便。Cookie和Session因此誕生，解決無紀錄狀態的問題。</p>
+<h3 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h3><p>他不只是一塊小餅乾，而是一段由Server送給<strong>使用者瀏覽器的一小塊資料(文檔)。<br>瀏覽器會儲存它</strong>並且在瀏覽器下一次發送要求的時候將它送回原本送來的伺服器。</p>
+<blockquote>
+<p><strong><em>Cookie就是用來繞開HTTP的無狀態性的「額外手段」之一</em></strong></p>
+</blockquote>
+<p>基本上，它是用來<strong>區分兩個要求是來自同一個瀏覽器</strong> — 以此去保持使用者的登入狀態。例如，它提供了保存狀態資訊的功能，來幫助HTTP這個無法紀錄狀態的通訊協定。<br>用實例說明的話就是我們平常逛網拍，要購買商品時都要登入會員資料，進入到登入介面，我們可以透過Cookie的方式紀錄之前輸入的帳號密碼，省去每次都要重新打帳密的不便， 只要Cookie尚未到期，瀏覽器會傳送該Cookie給伺服器作驗證憑據。這樣的方式已經解決大部分的問題。<br>由於這個Cookie設定值是儲存在使用者的電腦裡，我們可透過瀏覽器來檢測這個設定值是否儲存。操作如下:<br>開啟瀏覽器，輸入要查看網址，再點網址列前方的圖示，接著就會看到Cookie</p>
+<p><img src="https://miro.medium.com/max/773/1*bPGr0j4kg8RKhbuSEUQZrg.png" alt="cookie1"></p>
+<p>點一下，進入後在允許的頁籤中，就會看到目前所儲存的Cooke值有那些。</p>
+<p><img src="https://miro.medium.com/max/523/1*D7rwKWO7RHry8fKxybcZFw.png" alt="cookie2"></p>
+<p>點一下展開後，就可看到每個Cookie所記錄的值與內容，之後若找不到Cookie時，可以嘗試從這邊找看看。</p>
+<p><img src="https://miro.medium.com/max/495/1*V08tsI3kjrUuRt7WfJKptQ.png" alt="cookie3"></p>
+<p>實作原理: client 端的程式在一旦填寫的資料有變動時，就把該資訊寫入 cookie。</p>
+<p><strong>Cookie 由瀏覽器處理，具有兩個特性：</strong></p>
+<blockquote>
+<p>特定網域：只針對原本的 網域(domain) 起作用。舉例: 在 *.myExample.com 存入的 cookie，不會出現在 *.not-myExample.com<br>有生命期限: 到了所設定的生命期限之後會失效。<br><strong>在向該 domain 的 server 發送請求時，也會被一併帶進去該請求中。</strong></p>
+</blockquote>
+<h4 id="這麼好用的東西當然也有缺點"><a href="#這麼好用的東西當然也有缺點" class="headerlink" title="這麼好用的東西當然也有缺點"></a>這麼好用的東西當然也有缺點</h4><p>cookie 雖然很方便，但是使用cookie 有一個很大的弊端，<strong>cookie 中的所有數據在Client端就可以被修改</strong>，數據非常容易被偽造，那麼一些重要的數據就不能存放在cookie 中了，而且<strong>如果cookie中數據字段太多會影響傳輸效率</strong>。為了解決這些問題，就產生了session，session 中的數據是保留在Server端。</p>
+<h3 id="Session"><a href="#Session" class="headerlink" title="Session"></a>Session</h3><p>Session 負責紀錄在 server端上的使用者訊息，會在一個用戶完成身分認證後，存下所需的用戶資料，接著產生一組對應的 ID，存入 cookie 後傳回用戶端。 Session泛指有始有終的系列動作/消息，好比會話一般。</p>
+<p>試想 Cookie是一張領餐的號碼牌，而Session是一張數位會員卡， 記錄你的點餐號碼，還可以紀錄你的餐點細節，消費記錄和點餐喜好。，解決Cookie遺失的問題。</p>
+<p>若今天替某個Client端的Request建一個Session的時候，Server會先檢查這個Client端的Request裡是否有包含了Session標識(Session id)，如果已包含一個Session id，表示這個發起Request的Client端是已經存放過的id，Server就按照Session id，把這個Session找出來使用。但如果Client端請求不包含Session id，，則表示他是新臉孔，那Server端就為此Client端創建一個Session，並生成一個Session id，並Response給Client端保存。</p>
+<p>小結:</p>
+<ul>
+<li>session：帳號登錄驗證過後，Server端所發的識別證</li>
+<li>cookie：是瀏覽器存放資料的地方，可以存放seesion之類的資料</li>
+</ul>
+<h2 id="print"><a href="#print" class="headerlink" title="print"></a>print</h2><p><a target="_blank" rel="noopener" href="https://www.sitepoint.com/delay-sleep-pause-wait/">https://www.sitepoint.com/delay-sleep-pause-wait/</a></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># 以下程式印出的順序：</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;Hello&quot;</span>);</span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123; <span class="built_in">console</span>.log(<span class="string">&quot;World!&quot;</span>); &#125;, <span class="number">2000</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;Goodbye!&quot;</span>);</span><br><span class="line"><span class="comment">/* ANS:</span></span><br><span class="line"><span class="comment">Hello</span></span><br><span class="line"><span class="comment">Goodbye!</span></span><br><span class="line"><span class="comment">World!</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80/" rel="tag"># 程式語言</a>
+              <a href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag"># 前端</a>
+              <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/09/16/%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80/OOP/" rel="prev" title="物件導向 Object Oriented Programming">
+      <i class="fa fa-chevron-left"></i> 物件導向 Object Oriented Programming
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/09/16/%E4%BD%9C%E6%A5%AD%E7%B3%BB%E7%B5%B1/OS/" rel="next" title="作業系統 Operating System">
+      作業系統 Operating System <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#AJAX"><span class="nav-number">1.</span> <span class="nav-text">AJAX</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Session%E8%88%87Cookie%E5%B7%AE%E5%88%A5"><span class="nav-number">2.</span> <span class="nav-text">Session與Cookie差別</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Cookie"><span class="nav-number">2.1.</span> <span class="nav-text">Cookie</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%99%E9%BA%BC%E5%A5%BD%E7%94%A8%E7%9A%84%E6%9D%B1%E8%A5%BF%E7%95%B6%E7%84%B6%E4%B9%9F%E6%9C%89%E7%BC%BA%E9%BB%9E"><span class="nav-number">2.1.1.</span> <span class="nav-text">這麼好用的東西當然也有缺點</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Session"><span class="nav-number">2.2.</span> <span class="nav-text">Session</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#print"><span class="nav-number">3.</span> <span class="nav-text">print</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Jeff Wang</p>
+  <div class="site-description" itemprop="description">2020/09始</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/DAOjun0690" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;DAOjun0690" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jeff Wang</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 強力驅動
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
